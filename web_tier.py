@@ -71,8 +71,8 @@ def healthcheck():
   return "200"
 
 
-app.logger.info(constants.STARTUP_BANNER)
-app.logger.info(constants.STARTUP_BANNER_GROUP)
+#app.logger.info(constants.STARTUP_BANNER)
+#app.logger.info(constants.STARTUP_BANNER_GROUP)
 resultsThread = Thread(target=collect_response)
 resultsThread.start()
 app.run(host='0.0.0.0', debug=True, port=6060)
