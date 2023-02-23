@@ -60,6 +60,7 @@ async def classify_image():
     # app.logger.debug("Request processed with payload %s", json_msg['key'])
 
     # send message to SQS
+    print("Debug SQS URL: ", constants.AWS_SQS_REQUEST_QUEUE_NAME)
     send_message(get_queue_url(constants.AWS_SQS_REQUEST_QUEUE_NAME), json_msg)
 
     # receive message from SQS
