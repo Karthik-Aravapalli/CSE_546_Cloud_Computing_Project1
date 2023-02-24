@@ -111,7 +111,7 @@ def classify_image_sub(base64ImageStr, imageName):
     base64Image = bytes(base64ImageStr, 'utf-8')
     with open(imageName, "wb") as fh:
         fh.write(base64.decodebytes(base64Image))
-    out = check_output(["python3", "-W ignore", "../face_recognition.py", imageName]).strip().decode('utf-8')
+    out = check_output(["python3", "-W ignore", "../image_recognition.py", imageName]).strip().decode('utf-8')
     return out
 
 
