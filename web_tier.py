@@ -60,7 +60,6 @@ async def classify_image():
     # app.logger.debug("Request processed with payload %s", json_msg['key'])
 
     # send message to SQS
-    print("Debug SQS URL: ", constants.AWS_SQS_REQUEST_QUEUE_NAME)
     send_message(get_queue_url(constants.AWS_SQS_REQUEST_QUEUE_NAME), json_msg)
 
     # receive message from SQS
@@ -72,8 +71,8 @@ def healthcheck():
   return "200"
 
 
-#app.logger.info(constants.STARTUP_BANNER)
-#app.logger.info(constants.STARTUP_BANNER_GROUP)
+app.logger.info(constants.STARTUP_BANNER)
+app.logger.info(constants.STARTUP_BANNER_GROUP)
 resultsThread = Thread(target=collect_response)
 resultsThread.start()
 app.run(host='0.0.0.0', debug=True, port=6060)

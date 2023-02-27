@@ -51,7 +51,6 @@ def get_message(queue_url):
         logging.error(e)
 
 
-
 def send_message_to_queue_response(queue_url, image_classification_key_value):
     try:
         response = app_sqs_client.send_message(QueueUrl=queue_url,
@@ -60,9 +59,7 @@ def send_message_to_queue_response(queue_url, image_classification_key_value):
     except ClientError as e:
         logging.error(e)
         return False
-    return True
-
-
+    
 def delete_message_request(queue_url, receipt_handle):
     try:
         app_sqs_client.delete_message(QueueUrl=queue_url, ReceiptHandle=receipt_handle
@@ -93,8 +90,6 @@ def save_result_file_into_bucket(file_name, bucket_name, object_name):
         response = s3_client.upload_file(file_name, bucket_name, object_name)
     except ClientError as e:
         logging.error(e)
-
-
 def get_image_after_decoding_base64(msg_filename_key, msg_value):
     msg_value = bytes(msg_value, 'utf-8')
     with open('encode.bin', "wb") as file:
@@ -143,4 +138,3 @@ if __name__ == '__main__':
         # Deleting message after the message response is sent to queue
         delete_message_request(sqs_management_instance.get_queue_url(), message['ReceiptHandle'])
         os.remove(file_name_without_jpg)
-
